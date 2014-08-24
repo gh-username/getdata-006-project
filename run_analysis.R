@@ -1,11 +1,28 @@
+# This script retrieves and processes raw data files and outputs a "tidy" data set
+# in the form of a single, comma-delimitted text file.  Specifically, 
+# the script does the following:
+#         
+#         1. Downloads a zipped archive of files from a URL.
+#         2. Unzips the archived files into a directory called "data".
+#         3. Removes files that are not required for the final data set.
+#         4. Reads the data files containing the names of the measured/derived variables (referred to as "features" in the original data files).
+#            These will be assigned to the data set as the column names.
+#         5. Reads the data files that contain the activities peformmed during the data collection process.
+#            These will be assigned to the records so that each record shows what activity was performmed.
+#         6. Selects only measured/derived variables that are calculated means or standard deviations.
+#         7. Combines training and test data files.
+#         8. Calculates the means of each variable from the original data set across by subject for each activity.
+
+
+## Set working directory.
 ifelse(tolower(getwd())!="f:/education/coursera data science jhu/03 getting and cleaning data/data/",
                setwd("f:/education/coursera data science jhu/03 getting and cleaning data/data/"), getwd())
 
-## Download zip file from website.
+## Download zipped data files from website.
 url<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 download.file(url,"dataset.zip")
 
-## Unzip the file to /data directory, then delete unneeded files.
+## Unzip the files to /data directory, then delete files that aren't needed.
 unzip("dataset.zip", junkpaths=TRUE, exdir="./data")
 setwd("./data")
 file.remove(c(grep("^body|^total",list.files(),value=TRUE)))
@@ -22,7 +39,7 @@ fileTestSet<-"./X_test.txt"
 fileTestActivity<-"./y_test.txt"
 fileTestSubject<-"./subject_test.txt"
 
-## Create table for features and assign column names.
+## Create a table for features and assign column names.
 tblFeatures<-read.table(fileFeatures, stringsAsFactors=FALSE)
 colnames(tblFeatures)<-c('featureID','featureName')
 
@@ -45,6 +62,7 @@ ssTrainSet<-subset(tblTrainSet,select=c(grep("mean|std",names(tblTrainSet))))
 ssTrainSet<-ssTrainSet[,-grep("Freq",names(ssTrainSet))]
 
 ## Add descriptive activity column to Training activity table.
+library(sqldf)
 tblTrainActivity<-sqldf('select a.activityID, b.activityName from tblTrainActivity a, tblActivityLabels b where a.activityID = b.activityID')
 
 ## Combine subject, activity and Training sets.
@@ -80,15 +98,39 @@ colnames(tblTrainTestSet)<-gsub("()","",names(tblTrainTestSet),fixed=TRUE)
 
 ## Create tidy data set with means of each feature (measured variable) for each subject/activity combination.
 tidyDf<-aggregate.data.frame(tblTrainTestSet[,3:68],tblTrainTestSet[,1:2],mean)
+tdNames<-names(tidyDf)
+colnames(tidyDf)<-vapply(tdNames,nameChange,"",USE.NAMES=FALSE)
 
+## write the tidy data set to a comma-delimitted text file.
+write.csv(tidyDf, "tidyData.txt", row.names=FALSE)
+
+
+## FUNCTIONS ##
+
+nameChange<-function(oldName){
+        newName<-""
+        baseNew<-"meanOfSubjectActivity"
+        if(tolower(oldName) %in% c("subjectid","activityname")){newName<-oldName}else{
+                if(substr(oldName,1,1) == "t"){
+                        domName<-"TimeDomain"
+                        newName<-substr(oldName,2,nchar(oldName))
+                        newName<-paste(baseNew,domName,newName,sep="")
+                }else{
+                        domName<-"FrequencyDomain"
+                        newName<-substr(oldName,2,nchar(oldName))
+                        newName<-paste(baseNew,domName,newName,sep="")
+                }
+        }
+        return(newName)
+}
 
 
 ## Used for Testing only ##
-
 # head(tidyDf[,1:6])
 # tail(tidyDf[,1:6])
 # nrow(tidyDf)
 # ncol(tidyDf)
+# names(tidyDf)
 # 
 # str(tblTrainTestSet)
 # summary(tblTrainTestSet)
