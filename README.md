@@ -11,7 +11,7 @@ course project repo
          1. Downloads a zipped archive of files from a URL.
          2. Unzips the archived files into a directory called "data".
          3. Removes files that are not required for the final data set.
-         4. Reads the data files containing the names of the measured/derived variables (referred to as "features" in the              original data files).
+         4. Reads the data files containing the names of the measured/derived variables (referred to as "features" in the original data files).
             These will be assigned to the data set as the column names.
          5. Reads the data files that contain the activities peformmed during the data collection process.
             These will be assigned to the records so that each record shows what activity was performmed.
