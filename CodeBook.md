@@ -10,7 +10,8 @@ Each person (subject) performed six activities (WALKING, WALKING_UPSTAIRS, WALKI
 STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded 
 accelerometer and gyroscope, they captured 3-axial linear acceleration and 3-axial angular velocity 
 at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. 
-The obtained data set has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
+The obtained data set has been randomly partitioned into two sets, where 70% of the volunteers 
+was selected for generating the training data and 30% the test data. 
 
 The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled 
 in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, 
@@ -18,7 +19,8 @@ which has gravitational and body motion components, was separated using a Butter
 a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by 
 calculating variables from the time and frequency domain.
 
-See below for the description of the original data source from the README file provide with the data files.
+See below for the description of the original data source from the 
+README file provide with the data files.
 ```
 
 ##### HOW THE ORIGINAL DATA SOURCE WAS PROCESSED
