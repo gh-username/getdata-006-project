@@ -114,12 +114,12 @@ The data set in the file "tidyData.txt" is produced by the following steps:
 - meanOfSubjectActivityFrequencyDomainBodyGyro-std-Z
 - meanOfSubjectActivityFrequencyDomainBodyAccMag-mean
 - meanOfSubjectActivityFrequencyDomainBodyAccMag-std
-- meanOfSubjectActivityFrequencyDomainBodyBodyAccJerkMag-mean
-- meanOfSubjectActivityFrequencyDomainBodyBodyAccJerkMag-std
-- meanOfSubjectActivityFrequencyDomainBodyBodyGyroMag-mean
-- meanOfSubjectActivityFrequencyDomainBodyBodyGyroMag-std
-- meanOfSubjectActivityFrequencyDomainBodyBodyGyroJerkMag-mean
-- meanOfSubjectActivityFrequencyDomainBodyBodyGyroJerkMag-std
+- meanOfSubjectActivityFrequencyDomainBodyAccJerkMag-mean
+- meanOfSubjectActivityFrequencyDomainBodyAccJerkMag-std
+- meanOfSubjectActivityFrequencyDomainBodyGyroMag-mean
+- meanOfSubjectActivityFrequencyDomainBodyGyroMag-std
+- meanOfSubjectActivityFrequencyDomainBodyGyroJerkMag-mean
+- meanOfSubjectActivityFrequencyDomainBodyGyroJerkMag-std
 
 These headings are derived from the measured/derived variables (called features) of the original data source and are detailed in the file "features_info.txt".  Here is how the original featues are described:
 

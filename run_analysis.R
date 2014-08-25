@@ -102,6 +102,7 @@ tidyDf<-aggregate.data.frame(tblTrainTestSet[,3:68],tblTrainTestSet[,1:2],mean)
 
 ## Apply new column names to the data set to reflect the new calculated values.
 tdNames<-names(tidyDf)
+tdNames<-gsub("BodyBody","Body",tdNames)
 colnames(tidyDf)<-vapply(tdNames,nameChange,"",USE.NAMES=FALSE)
 
 ## write the tidy data set to a comma-delimitted text file.
