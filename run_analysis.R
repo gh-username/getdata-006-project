@@ -12,7 +12,8 @@
 #         6. Selects only measured/derived variables that are calculated means or standard deviations.
 #         7. Combines training and test data files.
 #         8. Calculates the means of each variable from the original data set across by subject for each activity.
-
+#
+# The script requires the packages 'sqldf' and its dependents in order to run.
 
 ## Set working directory.
 ifelse(tolower(getwd())!="f:/education/coursera data science jhu/03 getting and cleaning data/data/",
