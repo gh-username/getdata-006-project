@@ -25,20 +25,101 @@ README file provide with the data files.
 
 ##### HOW THE ORIGINAL DATA SOURCE WAS PROCESSED
 
-There are two main data groups from the original data source: Test Data and Training Data.  There are three files from the original data source which together represent a data group.  These files begin with the prfixes "x_", "y_", and "subject" followed by the data group ("test" and "train").
+There are two main data groups from the original data source: Test Data and Training Data.  There are three files from the original data source which together represent a data group.  The names of these files begin with the prfixes "x_", "y_", and "subject" followed by the data group ("test" and "train").
 
 The data group "Test Data" involves the files:
 
-- x_test (the data set of measured/derived variables without headings/labels to describe them)
-- y_test (the headings/labels which describe the measured/derived variables of the data set)
-- subject_test (a "single column" data file which tells which subject was measured by each row in the data set)
+- x_test.txt (the data set of measured/derived variables without headings/labels to describe them)
+- y_test.txt (a "single column" data file which tells which activity was measured by each row in the data set)
+- subject_test.txt (a "single column" data file which tells which subject was measured by each row in the data set)
 
 The data group "Training Data" involves the files (descriptions are the same as above):
 
-- x_train
-- y_train
-- subject_train
+- x_train.txt
+- y_train.txt
+- subject_train.txt
+ 
+In addition to the files that provide the data sets for collected data, there are two files that are used to supply descriptive information to the data sets:
 
+- features.txt (a "single colum" data file which provids the headings/labels which describe the measured/derived variables of the data sets beginning with "x_". Each record in the file corresponds to a variable in the data set and the records are ordered such that the first record corresponds of the file to the first varialbe of the data set, the second record of the file corresponds to the second varialbe of the data set, etc.)
+- activity_labels.txt (a file that can be used to link the activity ID #s provided in the "y_" files to descriptions of the activities that were performed by each subject.)
+
+The data set in the file "tidyData.txt" is produced by the following steps: 
+
+1. The Test and Training data sets are combined together in a manner that results in the Training data being appended to the Test data.  In otherwords the first record of the Training data set follows immediately after the last record of the Test data set in the final combined data set.
+2. Data for measured/derived variables that are not calculated means or standard deviations are removed from the data set created in step 1.
+3. The data set created in step 2 is updated in such a way as to reflect the activities performed and the subject who performed them in each measurement.
+4. The mean of each measured/derived variable is calculated for each subject/activity in the data set created in step 3.  In other words, if subject 1 did activity 1 36 times, the 36 resulting measurements are used to calculate the mean for this subject doing this activity.  These means are what is shown in the final data set which is written to the file "tidyData.txt".
+5. The headings/labels of the data set created in step 4 are updated to reflect the data represented in the final data set.  The headings created are as follows:
+ 
+- subjectID
+- activityName
+- meanOfSubjectActivityTimeDomainBodyAcc-mean-X
+- meanOfSubjectActivityTimeDomainBodyAcc-mean-Y
+- meanOfSubjectActivityTimeDomainBodyAcc-mean-Z
+- meanOfSubjectActivityTimeDomainBodyAcc-std-X
+- meanOfSubjectActivityTimeDomainBodyAcc-std-Y
+- meanOfSubjectActivityTimeDomainBodyAcc-std-Z
+- meanOfSubjectActivityTimeDomainGravityAcc-mean-X
+- meanOfSubjectActivityTimeDomainGravityAcc-mean-Y
+- meanOfSubjectActivityTimeDomainGravityAcc-mean-Z
+- meanOfSubjectActivityTimeDomainGravityAcc-std-X
+- meanOfSubjectActivityTimeDomainGravityAcc-std-Y
+- meanOfSubjectActivityTimeDomainGravityAcc-std-Z
+- meanOfSubjectActivityTimeDomainBodyAccJerk-mean-X
+- meanOfSubjectActivityTimeDomainBodyAccJerk-mean-Y
+- meanOfSubjectActivityTimeDomainBodyAccJerk-mean-Z
+- meanOfSubjectActivityTimeDomainBodyAccJerk-std-X
+- meanOfSubjectActivityTimeDomainBodyAccJerk-std-Y
+- meanOfSubjectActivityTimeDomainBodyAccJerk-std-Z
+- meanOfSubjectActivityTimeDomainBodyGyro-mean-X
+- meanOfSubjectActivityTimeDomainBodyGyro-mean-Y
+- meanOfSubjectActivityTimeDomainBodyGyro-mean-Z
+- meanOfSubjectActivityTimeDomainBodyGyro-std-X
+- meanOfSubjectActivityTimeDomainBodyGyro-std-Y
+- meanOfSubjectActivityTimeDomainBodyGyro-std-Z
+- meanOfSubjectActivityTimeDomainBodyGyroJerk-mean-X
+- meanOfSubjectActivityTimeDomainBodyGyroJerk-mean-Y
+- meanOfSubjectActivityTimeDomainBodyGyroJerk-mean-Z
+- meanOfSubjectActivityTimeDomainBodyGyroJerk-std-X
+- meanOfSubjectActivityTimeDomainBodyGyroJerk-std-Y
+- meanOfSubjectActivityTimeDomainBodyGyroJerk-std-Z
+- meanOfSubjectActivityTimeDomainBodyAccMag-mean
+- meanOfSubjectActivityTimeDomainBodyAccMag-std
+- meanOfSubjectActivityTimeDomainGravityAccMag-mean
+- meanOfSubjectActivityTimeDomainGravityAccMag-std
+- meanOfSubjectActivityTimeDomainBodyAccJerkMag-mean
+- meanOfSubjectActivityTimeDomainBodyAccJerkMag-std
+- meanOfSubjectActivityTimeDomainBodyGyroMag-mean
+- meanOfSubjectActivityTimeDomainBodyGyroMag-std
+- meanOfSubjectActivityTimeDomainBodyGyroJerkMag-mean
+- meanOfSubjectActivityTimeDomainBodyGyroJerkMag-std
+- meanOfSubjectActivityFrequencyDomainBodyAcc-mean-X
+- meanOfSubjectActivityFrequencyDomainBodyAcc-mean-Y
+- meanOfSubjectActivityFrequencyDomainBodyAcc-mean-Z
+- meanOfSubjectActivityFrequencyDomainBodyAcc-std-X
+- meanOfSubjectActivityFrequencyDomainBodyAcc-std-Y
+- meanOfSubjectActivityFrequencyDomainBodyAcc-std-Z
+- meanOfSubjectActivityFrequencyDomainBodyAccJerk-mean-X
+- meanOfSubjectActivityFrequencyDomainBodyAccJerk-mean-Y
+- meanOfSubjectActivityFrequencyDomainBodyAccJerk-mean-Z
+- meanOfSubjectActivityFrequencyDomainBodyAccJerk-std-X
+- meanOfSubjectActivityFrequencyDomainBodyAccJerk-std-Y
+- meanOfSubjectActivityFrequencyDomainBodyAccJerk-std-Z
+- meanOfSubjectActivityFrequencyDomainBodyGyro-mean-X
+- meanOfSubjectActivityFrequencyDomainBodyGyro-mean-Y
+- meanOfSubjectActivityFrequencyDomainBodyGyro-mean-Z
+- meanOfSubjectActivityFrequencyDomainBodyGyro-std-X
+- meanOfSubjectActivityFrequencyDomainBodyGyro-std-Y
+- meanOfSubjectActivityFrequencyDomainBodyGyro-std-Z
+- meanOfSubjectActivityFrequencyDomainBodyAccMag-mean
+- meanOfSubjectActivityFrequencyDomainBodyAccMag-std
+- meanOfSubjectActivityFrequencyDomainBodyBodyAccJerkMag-mean
+- meanOfSubjectActivityFrequencyDomainBodyBodyAccJerkMag-std
+- meanOfSubjectActivityFrequencyDomainBodyBodyGyroMag-mean
+- meanOfSubjectActivityFrequencyDomainBodyBodyGyroMag-std
+- meanOfSubjectActivityFrequencyDomainBodyBodyGyroJerkMag-mean
+- meanOfSubjectActivityFrequencyDomainBodyBodyGyroJerkMag-std
 
 ##### README NOTES FROM ORIGINAL DATA SOURCE
 ```
