@@ -1,4 +1,4 @@
-## ABOUT THE ORIGINAL DATA SOURCE ##
+ABOUT THE ORIGINAL DATA SOURCE
 
 The file "tidyData.txt"" is based on the data originally collected by: Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012.
 
@@ -9,7 +9,7 @@ The sensor signals (accelerometer and gyroscope) were pre-processed by applying 
 See below for the description of the original data source from the README file provide with the data files.
 
 
-## HOW THE ORIGINAL DATA SOURCE WAS PROCESSED ##
+HOW THE ORIGINAL DATA SOURCE WAS PROCESSED
 
 There are two main data groups from the original data source: Test Data and Training Data.  There are three files from the original data source which together represent a data group.  These files begin with the prfixes "x_", "y_", and "subject" followed by the data group ("test" and "train").  In otherwords, the data group "Test Data" involves the files:
 
@@ -26,7 +26,7 @@ subject_train
 
 
 
-## README NOTES FROM ORIGINAL DATA SOURCE ##
+README NOTES FROM ORIGINAL DATA SOURCE
 
 ==================================================================
 Human Activity Recognition Using Smartphones Dataset
