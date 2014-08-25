@@ -27,16 +27,17 @@ README file provide with the data files.
 
 There are two main data groups from the original data source: Test Data and Training Data.  There are three files from the original data source which together represent a data group.  These files begin with the prfixes "x_", "y_", and "subject" followed by the data group ("test" and "train").
 
-######T he data group "Test Data" involves the files:
+The data group "Test Data" involves the files:
 
-*x_test (the data set of measured/derived variables without headings/labels to describe them)
-*y_test (the headings/labels which describe the measured/derived variables of the data set)
-*subject_test (a "single column" data file which tells which subject was measured by each row in the data set)
+- x_test (the data set of measured/derived variables without headings/labels to describe them)
+- y_test (the headings/labels which describe the measured/derived variables of the data set)
+- subject_test (a "single column" data file which tells which subject was measured by each row in the data set)
 
-###### The data group "Training Data" involves the files (descriptions are the same as above):
-*x_train
-*y_train
-*subject_train
+The data group "Training Data" involves the files (descriptions are the same as above):
+
+- x_train
+- y_train
+- subject_train
 
 
 ##### README NOTES FROM ORIGINAL DATA SOURCE
