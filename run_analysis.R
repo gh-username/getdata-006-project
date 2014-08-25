@@ -104,6 +104,7 @@ colnames(tblTrainTestSet)<-gsub("()","",names(tblTrainTestSet),fixed=TRUE)
 
 ## Create tidy data set with means of each feature (measured variable) for each subject/activity combination.
 tidyDf<-aggregate.data.frame(tblTrainTestSet[,3:68],tblTrainTestSet[,1:2],mean)
+tidyDf[,-1:-2]<-round(tidyDf[,-1:-2],4)
 
 ## Apply new column names to the data set to reflect the new calculated values.
 tdNames<-names(tidyDf)
