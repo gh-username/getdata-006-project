@@ -13,7 +13,7 @@
 #         7. Combines training and test data files.
 #         8. Calculates the means of each variable from the original data set across by subject for each activity.
 #
-# The script requires the packages 'sqldf' and its dependents in order to run.
+# The script requires the package 'sqldf' and its dependents in order to run.
 
 ## Set working directory.
 ifelse(tolower(getwd())!="f:/education/coursera data science jhu/03 getting and cleaning data/data/",
@@ -99,6 +99,8 @@ colnames(tblTrainTestSet)<-gsub("()","",names(tblTrainTestSet),fixed=TRUE)
 
 ## Create tidy data set with means of each feature (measured variable) for each subject/activity combination.
 tidyDf<-aggregate.data.frame(tblTrainTestSet[,3:68],tblTrainTestSet[,1:2],mean)
+
+## Apply new column names to the data set to reflect the new calculated values.
 tdNames<-names(tidyDf)
 colnames(tidyDf)<-vapply(tdNames,nameChange,"",USE.NAMES=FALSE)
 
@@ -107,6 +109,9 @@ write.csv(tidyDf, "tidyData.txt", row.names=FALSE)
 
 
 ## FUNCTIONS ##
+
+## The nameChange function takes a column name (character string) and converts it, if necessary, to a new,
+## name (string) that more accurately describes the data in the column.
 
 nameChange<-function(oldName){
         newName<-""
