@@ -13,7 +13,13 @@
 #         7. Combines training and test data files.
 #         8. Calculates the means of each variable from the original data set across by subject for each activity.
 #
-# The script requires the package 'sqldf' and its dependents in order to run.
+# The script requires the package 'sqldf' and its dependencies in order to run.
+# The script requires the package 'stats' and its dependencies in order to run.
+
+# Load required libraries. If they are not installed in your environment, run the commands "install.packages('sqldf')"
+# and/or "install.packages('stats')" to install the packages.
+library(sqldf)
+library(stats)
 
 ## Set working directory.
 ifelse(tolower(getwd())!="f:/education/coursera data science jhu/03 getting and cleaning data/data/",
@@ -63,7 +69,6 @@ ssTrainSet<-subset(tblTrainSet,select=c(grep("mean|std",names(tblTrainSet))))
 ssTrainSet<-ssTrainSet[,-grep("Freq",names(ssTrainSet))]
 
 ## Add descriptive activity column to Training activity table.
-library(sqldf)
 tblTrainActivity<-sqldf('select a.activityID, b.activityName from tblTrainActivity a, tblActivityLabels b where a.activityID = b.activityID')
 
 ## Combine subject, activity and Training sets.
